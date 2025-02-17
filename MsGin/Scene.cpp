@@ -32,13 +32,18 @@ void Scene::Update(float deltaTime)
 	{
 		object->Update(deltaTime);
 	}
+	m_objects.erase(std::remove_if(m_objects.begin(), m_objects.end(),
+		[&](std::shared_ptr<GameObject>& object)
+		{
+			return object->IsDestroyed();
+		}), m_objects.end());
 }
 
-void dae::Scene::FixedUpdate(float deltaTime)
+void dae::Scene::FixedUpdate(float fixedTimeStep)
 {
 	for (auto& object : m_objects)
 	{
-		object->FixedUpdate(deltaTime);
+		object->FixedUpdate(fixedTimeStep);
 	}
 }
 

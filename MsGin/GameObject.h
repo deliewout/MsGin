@@ -1,32 +1,104 @@
 #pragma once
 #include <memory>
+#include <vector>
 #include "Transform.h"
+#include "component.h"
 
 namespace dae
 {
 	class Texture2D;
 
-	// todo: this should become final.
-	class GameObject 
+	
+	class GameObject final
 	{
 	public:
-		virtual void Update(float deltaTime);
-		virtual void FixedUpdate(float deltaTime);
-		virtual void Render() const;
+		void Update(float deltaTime);
+		void FixedUpdate(float fixedTimeStep);
+		void Render() const;
 
 		void SetTexture(const std::string& filename);
 		void SetPosition(float x, float y);
 
-		GameObject() = default;
-		virtual ~GameObject();
+		GameObject();
+		~GameObject();
 		GameObject(const GameObject& other) = delete;
 		GameObject(GameObject&& other) = delete;
 		GameObject& operator=(const GameObject& other) = delete;
 		GameObject& operator=(GameObject&& other) = delete;
 
+		template<typename T>
+		T* AddComponent();
+		template<typename T>
+		void removeComponent();
+		template<typename T>
+		T* GetComponent();
+		template<typename T>
+		bool HasComponent();
+
+		bool IsDestroyed() const { return m_RemovedGameObject; }
 	private:
-		Transform m_transform{};
+		std::unique_ptr<Transform> m_transform{};
 		// todo: mmm, every gameobject has a texture? Is that correct?
-		std::shared_ptr<Texture2D> m_texture{};
+		//std::shared_ptr<Texture2D> m_texture{};
+
+		std::vector<std::unique_ptr<Component>> m_pComponents;
+
+		bool m_RemovedGameObject{false};
 	};
+
+	template<typename T>
+	T* GameObject::AddComponent()
+	{
+		//make sure the gameObject doesn't have a component like this in its components vector
+		if (HasComponent<T>() == false)
+		{
+			auto pComponent = std::make_unique<T>(this);
+			T* pComponentPtr{ pComponent.get() };
+			if constexpr (std::is_same<T, Transform>())
+			{
+				m_transform = std::move(pComponent);
+			}
+			else
+			{
+				m_pComponents.emplace_back(std::move(pComponent));
+			}
+
+
+			return  pComponentPtr;
+		}
+
+		return nullptr;
+	}
+
+	template<typename T>
+	void GameObject::removeComponent()
+	{
+		for (auto it = m_pComponents.begin(); it != m_pComponents.end(); ++it)
+		{
+			if(dynamic_cast<T*>(it->get()))
+			{
+				m_pComponents.erase(it);
+				break;
+			}
+		}
+	}
+
+	template<typename T>
+	T* GameObject::GetComponent()
+	{
+		for (const auto& component : m_pComponents)
+		{
+			if (auto correctComponent = dynamic_cast<T*>(component.get()))
+			{
+				return correctComponent;
+			}
+		}
+		return nullptr;
+	}
+
+	template<typename T>
+	bool GameObject::HasComponent()
+	{
+		return GetComponent<T>() != nullptr;
+	}
 }
