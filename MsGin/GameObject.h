@@ -37,9 +37,9 @@ namespace dae
 
 		void SetParent(GameObject* parent, bool keepWorldPos);
 
-		GameObject* GetParent() { return m_pParent; }
-		int GetChildCount() { return m_pChildren.size(); }
-		GameObject* GetChildAt(size_t index) { return m_pChildren[index]; }
+		GameObject* GetParent() const { return m_pParent; }
+		size_t GetChildCount() const { return m_pChildren.size(); }
+		GameObject* GetChildAt(unsigned int index) const { return m_pChildren[index]; }
 
 		bool IsDestroyed() const { return m_RemovedGameObject; }
 	private:
