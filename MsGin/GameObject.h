@@ -35,6 +35,12 @@ namespace dae
 		template<typename T>
 		bool HasComponent();
 
+		void SetParent(GameObject* parent, bool keepWorldPos);
+
+		GameObject* GetParent() { return m_pParent; }
+		int GetChildCount() { return m_pChildren.size(); }
+		GameObject* GetChildAt(unsigned int index) { return m_pChildren[index]; }
+
 		bool IsDestroyed() const { return m_RemovedGameObject; }
 	private:
 		std::unique_ptr<Transform> m_transform{};
@@ -42,8 +48,13 @@ namespace dae
 		//std::shared_ptr<Texture2D> m_texture{};
 
 		std::vector<std::unique_ptr<Component>> m_pComponents;
+		GameObject* m_pParent;
+		std::vector<GameObject*> m_pChildren;
 
 		bool m_RemovedGameObject{false};
+		void AddChild(GameObject* child);
+		void RemoveChild(GameObject* child);
+
 	};
 
 	template<typename T>

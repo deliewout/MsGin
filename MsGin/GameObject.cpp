@@ -47,5 +47,31 @@ void dae::GameObject::SetTexture(const std::string& filename)
 
 void dae::GameObject::SetPosition(float x, float y)
 {
-	m_transform->SetPosition(x, y, 0.0f);
+	m_transform->SetPosition(x, y);
+}
+
+void dae::GameObject::SetParent(GameObject* parent, bool keepWorldPos)
+{
+	if (m_pParent==this||m_pParent==parent)
+		return;
+	if (parent == nullptr)
+		m_transform->SetLocalPos(m_transform->GetWorldPosition());
+	else
+	{
+		if (keepWorldPos)
+			m_transform->SetLocalPos(m_transform->GetWorldPosition() - parent->m_transform->GetWorldPosition());
+	}
+	if (m_pParent) m_pParent->RemoveChild(this);
+	m_pParent = parent;
+	if (m_pParent) m_pParent->AddChild(this);
+}
+
+void dae::GameObject::AddChild(GameObject* child)
+{
+	m_pChildren.emplace_back(child);
+}
+
+void dae::GameObject::RemoveChild(GameObject* child)
+{
+	m_pChildren.erase(std::remove(m_pChildren.begin(), m_pChildren.end(), child), m_pChildren.end());
 }
