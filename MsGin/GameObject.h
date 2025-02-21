@@ -39,7 +39,7 @@ namespace dae
 
 		GameObject* GetParent() { return m_pParent; }
 		int GetChildCount() { return m_pChildren.size(); }
-		GameObject* GetChildAt(unsigned int index) { return m_pChildren[index]; }
+		GameObject* GetChildAt(size_t index) { return m_pChildren[index]; }
 
 		bool IsDestroyed() const { return m_RemovedGameObject; }
 	private:
