@@ -16,7 +16,7 @@ namespace dae
 		void FixedUpdate(float fixedTimeStep);
 		void Render() const;
 
-		void SetTexture(const std::string& filename);
+		//void SetTexture(const std::string& filename);
 		void SetPosition(float x, float y);
 
 		GameObject();
@@ -40,6 +40,7 @@ namespace dae
 		GameObject* GetParent() const { return m_pParent; }
 		size_t GetChildCount() const { return m_pChildren.size(); }
 		GameObject* GetChildAt(unsigned int index) const { return m_pChildren[index]; }
+		const std::vector<GameObject*>& GetChildren() const { return m_pChildren; };
 
 		bool IsDestroyed() const { return m_RemovedGameObject; }
 	private:
@@ -84,9 +85,9 @@ namespace dae
 	template<typename T>
 	void GameObject::removeComponent()
 	{
-		for (auto it = m_pComponents.begin(); it != m_pComponents.end(); ++it)
+		for (auto it = m_pComponents.begin(); it > m_pComponents.end(); ++it)
 		{
-			if(dynamic_cast<T*>(it->get()))
+			if(std::dynamic_pointer_cast<T>(*it))
 			{
 				m_pComponents.erase(it);
 				break;
