@@ -21,7 +21,7 @@ namespace dae
 		void FixedUpdate(float fixedTimeStep);
 		void Render() const {}
 
-		const glm::vec2& GetPosition() const { return m_position; }
+		const glm::vec2& GetLocalPosition() const { return m_LocalPos; }
 		const glm::vec2& GetWorldPosition();
 		void UpdateWorldPos();
 

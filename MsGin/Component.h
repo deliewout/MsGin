@@ -1,4 +1,5 @@
 ﻿#pragma once
+#include <glm.hpp>
 //#include "GameObject.h"
 
 namespace dae
@@ -10,7 +11,7 @@ namespace dae
 
 		virtual void Update(float deltaTime);
 		virtual void FixedUpdate(float fixedTimeStep);
-		virtual void Render() const {}
+		virtual void Render(glm::vec2 ) const {}
 
 		virtual ~Component() = default;
 		Component(const Component& other) = delete;

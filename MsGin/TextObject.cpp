@@ -39,11 +39,11 @@ void dae::TextObject::FixedUpdate(float)
 {
 }
 
-void dae::TextObject::Render() const
+void dae::TextObject::Render(glm::vec2 pos) const
 {
 	if (m_textTexture != nullptr)
 	{
-		const auto& pos = m_transform->GetPosition();
+		//const auto& pos = m_transform->GetPosition();
 		Renderer::GetInstance().RenderTexture(*m_textTexture, pos.x, pos.y);
 	}
 }

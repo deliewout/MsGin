@@ -33,22 +33,16 @@ void dae::GameObject::Render() const
 {
 	for (auto& component : m_pComponents)
 	{
-		component->Render();
+		component->Render(m_transform->GetLocalPosition());
 	}
 	//const auto& pos = m_transform->GetPosition();
 	//Renderer::GetInstance().RenderTexture(*m_texture, pos.x, pos.y);
 }
 
-//void dae::GameObject::SetTexture(const std::string& filename)
+//void dae::GameObject::SetPosition(float x, float y)
 //{
-//	//m_texture = ResourceManager::GetInstance().LoadTexture(filename);
-//	filename;
+//	m_transform->SetPosition(x, y);
 //}
-
-void dae::GameObject::SetPosition(float x, float y)
-{
-	m_transform->SetPosition(x, y);
-}
 
 void dae::GameObject::SetParent(GameObject* parent, bool keepWorldPos)
 {
@@ -66,12 +60,14 @@ void dae::GameObject::SetParent(GameObject* parent, bool keepWorldPos)
 	if (m_pParent) m_pParent->AddChild(this);
 }
 
+//add a child to the end of the children list
 void dae::GameObject::AddChild(GameObject* child)
 {
 	m_pChildren.emplace_back(child);
 }
-
+//remove a child from the list
 void dae::GameObject::RemoveChild(GameObject* child)
 {
 	m_pChildren.erase(std::remove(m_pChildren.begin(), m_pChildren.end(), child), m_pChildren.end());
+	child->m_pParent = nullptr;
 }

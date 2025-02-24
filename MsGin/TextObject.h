@@ -14,7 +14,7 @@ namespace dae
 	public:
 		void Update(float deltaTime) override;
 		void FixedUpdate(float fixedTimeStep) override;
-		void Render() const override;
+		void Render(glm::vec2 pos) const override;
 
 		void SetText(const std::string& text);
 		void SetPosition(float x, float y);

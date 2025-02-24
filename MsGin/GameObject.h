@@ -16,8 +16,7 @@ namespace dae
 		void FixedUpdate(float fixedTimeStep);
 		void Render() const;
 
-		//void SetTexture(const std::string& filename);
-		void SetPosition(float x, float y);
+		//void SetPosition(float x, float y);
 
 		GameObject();
 		~GameObject();
@@ -42,11 +41,12 @@ namespace dae
 		GameObject* GetChildAt(unsigned int index) const { return m_pChildren[index]; }
 		const std::vector<GameObject*>& GetChildren() const { return m_pChildren; };
 
+		Transform* GetTransform()const { return m_transform.get(); }
+
 		bool IsDestroyed() const { return m_RemovedGameObject; }
 	private:
 		std::unique_ptr<Transform> m_transform{};
-		// todo: mmm, every gameobject has a texture? Is that correct?
-		//std::shared_ptr<Texture2D> m_texture{};
+
 
 		std::vector<std::unique_ptr<Component>> m_pComponents;
 		GameObject* m_pParent;
