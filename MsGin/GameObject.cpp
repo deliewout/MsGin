@@ -54,6 +54,7 @@ void dae::GameObject::SetParent(GameObject* parent, bool keepWorldPos)
 	{
 		if (keepWorldPos)
 			m_transform->SetLocalPos(m_transform->GetWorldPosition() - parent->m_transform->GetWorldPosition());
+		m_transform->SetDirtyFlag();
 	}
 	if (m_pParent) m_pParent->RemoveChild(this);
 	m_pParent = parent;

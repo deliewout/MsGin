@@ -43,7 +43,7 @@ void dae::Transform::SetDirtyFlag()
 	m_PosDirty = true;
 	for (auto& child:GetOwner()->GetChildren())
 	{
-		child;
+		child->GetTransform()->SetDirtyFlag();
 	}
 }
 
