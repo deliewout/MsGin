@@ -55,6 +55,11 @@ void dae::TextObject::SetText(const std::string& text)
 	m_needsUpdate = true;
 }
 
+void dae::TextObject::SetFont(std::shared_ptr<Font> font)
+{
+	m_font = font;
+}
+
 void dae::TextObject::SetPosition(const float x, const float y)
 {
 	m_transform->SetPosition(x, y);

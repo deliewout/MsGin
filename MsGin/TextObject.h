@@ -4,6 +4,7 @@
 #include "GameObject.h"
 #include "Component.h"
 #include "Transform.h"
+#include "RenderComponent.h"
 
 namespace dae
 {
@@ -17,6 +18,7 @@ namespace dae
 		void Render(glm::vec2 pos) const override;
 
 		void SetText(const std::string& text);
+		void SetFont(std::shared_ptr<Font> font);
 		void SetPosition(float x, float y);
 
 		//TextObject(const std::string& text, std::shared_ptr<Font> font);
@@ -33,7 +35,7 @@ namespace dae
 		std::shared_ptr<Transform> m_transform{};
 		std::shared_ptr<Font> m_font;
 		std::shared_ptr<Texture2D> m_textTexture;
-
+		std::shared_ptr<RenderComponent> m_pOwner{ GetOwner()->GetComponent<dae::RenderComponent>() };
 
 	};
 }
