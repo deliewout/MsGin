@@ -183,6 +183,8 @@
     <ClInclude Include="..\3rdParty\imgui-1.91.8\imconfig.h" />
     <ClInclude Include="..\3rdParty\imgui-1.91.8\imgui.h" />
     <ClInclude Include="..\3rdParty\imgui-1.91.8\imgui_internal.h" />
+    <ClInclude Include="..\3rdParty\imgui-1.91.8\implot.h" />
+    <ClInclude Include="..\3rdParty\imgui-1.91.8\implot_internal.h" />
     <ClInclude Include="..\3rdParty\imgui-1.91.8\imstb_rectpack.h" />
     <ClInclude Include="..\3rdParty\imgui-1.91.8\imstb_textedit.h" />
     <ClInclude Include="..\3rdParty\imgui-1.91.8\imstb_truetype.h" />
@@ -201,6 +203,7 @@
     <ClInclude Include="TextObject.h" />
     <ClInclude Include="Texture2D.h" />
     <ClInclude Include="Transform.h" />
+    <ClInclude Include="TrashTheCache.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\3rdParty\imgui-1.91.8\backends\imgui_impl_opengl3.cpp" />
@@ -210,6 +213,8 @@
     <ClCompile Include="..\3rdParty\imgui-1.91.8\imgui_draw.cpp" />
     <ClCompile Include="..\3rdParty\imgui-1.91.8\imgui_tables.cpp" />
     <ClCompile Include="..\3rdParty\imgui-1.91.8\imgui_widgets.cpp" />
+    <ClCompile Include="..\3rdParty\imgui-1.91.8\implot.cpp" />
+    <ClCompile Include="..\3rdParty\imgui-1.91.8\implot_items.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="Font.cpp" />
     <ClCompile Include="FPSComponent.cpp" />
@@ -225,6 +230,7 @@
     <ClCompile Include="TextObject.cpp" />
     <ClCompile Include="Texture2D.cpp" />
     <ClCompile Include="Transform.cpp" />
+    <ClCompile Include="TrashTheCache.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
