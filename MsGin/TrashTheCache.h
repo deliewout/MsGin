@@ -16,6 +16,8 @@ namespace dae
 		TrashTheCache& operator=(const TrashTheCache& other) = delete;
 		TrashTheCache& operator=(TrashTheCache&& other) = delete;
 
+		virtual void OnGui() override;
+
 	private:
 		struct Transform
 		{

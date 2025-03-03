@@ -15,23 +15,33 @@ dae::GameObject::~GameObject()
 
 void dae::GameObject::Update(float deltaTime)
 {
-	for (auto& component : m_pComponents)
+	for (const auto& component : m_pComponents)
 	{
 		component->Update(deltaTime);
+	}
+
+	for (const auto& child : m_pChildren)
+	{
+		child->Update(deltaTime);
 	}
 }
 
 void dae::GameObject::FixedUpdate(float fixedTimeStep)
 {
-	for (auto& component : m_pComponents)
+	for (const auto& component : m_pComponents)
 	{
 		component->FixedUpdate(fixedTimeStep);
+	}
+
+	for (const auto& child : m_pChildren)
+	{
+		child->FixedUpdate(fixedTimeStep);
 	}
 }
 
 void dae::GameObject::Render() const
 {
-	for (auto& component : m_pComponents)
+	for (const auto& component : m_pComponents)
 	{
 		component->Render(m_transform->GetLocalPosition());
 	}
@@ -39,10 +49,13 @@ void dae::GameObject::Render() const
 	//Renderer::GetInstance().RenderTexture(*m_texture, pos.x, pos.y);
 }
 
-//void dae::GameObject::SetPosition(float x, float y)
-//{
-//	m_transform->SetPosition(x, y);
-//}
+void dae::GameObject::OnGui()
+{
+	for (const auto& component : m_pComponents)
+	{
+		component->OnGui();
+	}
+}
 
 void dae::GameObject::SetParent(GameObject* parent, bool keepWorldPos)
 {

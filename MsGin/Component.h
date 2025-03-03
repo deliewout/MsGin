@@ -12,6 +12,7 @@ namespace dae
 		virtual void Update(float deltaTime);
 		virtual void FixedUpdate(float fixedTimeStep);
 		virtual void Render(glm::vec2 ) const {}
+		virtual void OnGui(){}
 
 		virtual ~Component() = default;
 		Component(const Component& other) = delete;

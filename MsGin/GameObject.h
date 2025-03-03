@@ -15,6 +15,7 @@ namespace dae
 		void Update(float deltaTime);
 		void FixedUpdate(float fixedTimeStep);
 		void Render() const;
+		void OnGui();
 
 		//void SetPosition(float x, float y);
 

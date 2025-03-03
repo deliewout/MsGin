@@ -6,6 +6,11 @@
 #include "imgui.h"
 #include "implot.h"
 
+void dae::TrashTheCache::OnGui()
+{
+    RenderEx1();
+    RenderEx2();
+}
 
 void dae::TrashTheCache::RenderEx1()
 {
@@ -64,8 +69,8 @@ void dae::TrashTheCache::RenderEx2()
     {
         if (ImPlot::BeginPlot("Combined Plot"))
         {
-            ImPlot::PlotLine("Combined Line", m_GameObjectSamples.data(), static_cast<int>(m_GameObjectSamples.size()));
-            ImPlot::SetNextLineStyle(ImVec4{ 0,1,1,0 });
+            ImPlot::PlotLine("GameObject Line", m_GameObjectSamples.data(), static_cast<int>(m_GameObjectSamples.size()));
+            ImPlot::SetNextLineStyle(ImVec4{ 0,1,1,1 });
             ImPlot::PlotLine("AltGameObject Line", m_AltGameObjectSamples.data(), static_cast<int>(m_AltGameObjectSamples.size()));
             ImPlot::EndPlot();
         }
