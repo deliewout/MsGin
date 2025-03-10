@@ -37,7 +37,11 @@ void dae::Transform::SetLocalPos(const glm::vec2& pos)
 	m_LocalPos = pos;
 	SetDirtyFlag();
 }
-
+void dae::Transform::MoveLocalPosition(const glm::vec2& Pos)
+{
+	m_LocalPos += Pos;
+	SetDirtyFlag();
+}
 void dae::Transform::SetDirtyFlag()
 {
 	m_PosDirty = true;

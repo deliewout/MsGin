@@ -29,6 +29,8 @@ namespace dae
 		void SetLocalPos(const float x, const float y);
 		void SetLocalPos(const glm::vec2& pos);
 
+		void MoveLocalPosition(const glm::vec2& Pos);
+
 		void SetDirtyFlag();
 
 		void SetParent(GameObject* pParent) { m_pParent = pParent; }

@@ -12,7 +12,7 @@ public:
 	Gamepad& operator=(const Gamepad& other) = delete;
 	Gamepad& operator=(Gamepad&& other) = delete;
 
-	void BindGamepad();
+	void ProcessGamepadInput();
 	bool IsButtonDown(unsigned int button)const;
 	bool IsButtonUp(unsigned int button)const;
 	bool IsButtonPressed(unsigned int button)const;

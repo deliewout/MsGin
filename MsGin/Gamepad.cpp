@@ -1,6 +1,8 @@
 #include "Gamepad.h"
 
-void Gamepad::BindGamepad()
+#include <iostream>
+
+void Gamepad::ProcessGamepadInput()
 {
 
 	CopyMemory(&m_PrevState, &m_CurrentState, sizeof(XINPUT_STATE));
@@ -10,7 +12,7 @@ void Gamepad::BindGamepad()
 	{
 		return;
 	}
-
+	std::cout << m_CurrentState.Gamepad.wButtons << std::endl;
 	m_ButtonChanges = m_CurrentState.Gamepad.wButtons ^ m_PrevState.Gamepad.wButtons;
 	m_ButtonPressedThisFrame = m_ButtonChanges & m_CurrentState.Gamepad.wButtons;
 	m_ButtonReleasedThisFrame = m_ButtonChanges & (~m_CurrentState.Gamepad.wButtons);
