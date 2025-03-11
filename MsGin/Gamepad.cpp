@@ -1,7 +1,5 @@
 #include "Gamepad.h"
 
-#include <iostream>
-
 void Gamepad::ProcessGamepadInput()
 {
 
@@ -12,7 +10,7 @@ void Gamepad::ProcessGamepadInput()
 	{
 		return;
 	}
-	std::cout << m_CurrentState.Gamepad.wButtons << std::endl;
+
 	m_ButtonChanges = m_CurrentState.Gamepad.wButtons ^ m_PrevState.Gamepad.wButtons;
 	m_ButtonPressedThisFrame = m_ButtonChanges & m_CurrentState.Gamepad.wButtons;
 	m_ButtonReleasedThisFrame = m_ButtonChanges & (~m_CurrentState.Gamepad.wButtons);

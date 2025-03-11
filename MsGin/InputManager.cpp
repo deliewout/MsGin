@@ -63,7 +63,7 @@ void dae::InputManager::HandleCommands()
 		case KeyStates::down:
 			if (m_Gamepads[command->ControllerIdx]->IsButtonDown(static_cast<unsigned int>(command->GamepadButton)))
 				command->Command->Execute();
-			std::cout << "hello\n";
+			//std::cout << "hello\n";
 			break;
 		case KeyStates::up:
 			if (m_Gamepads[command->ControllerIdx]->IsButtonUp(static_cast<unsigned int>(command->GamepadButton)))

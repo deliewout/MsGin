@@ -72,7 +72,7 @@ namespace dae
 		bool ProcessInput();
 
 		void BindGamePadCommand(const int& controllerIdx, const GamepadButtons& gamepadButtons, const KeyStates& keyState, std::unique_ptr<Command> command);
-		void BindKeyBoardCommand(const SDL_Scancode& button, const KeyStates& keyState, std::unique_ptr<Command> action);
+		void BindKeyBoardCommand(const SDL_Scancode& button, const KeyStates& keyState, std::unique_ptr<Command> command);
 	private:
 		std::unique_ptr<KeyBoard> m_Keyboard;
 		std::vector<std::unique_ptr<Gamepad>> m_Gamepads;
