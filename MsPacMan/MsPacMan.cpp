@@ -5,7 +5,6 @@
 #endif
 
 #include "FPSComponent.h"
-#include "GameObject.h"
 #include "Minigin.h"
 #include "SceneManager.h"
 #include "ResourceManager.h"
@@ -15,7 +14,7 @@
 #include "HealthComponent.h"
 #include "InputManager.h"
 #include "RenderComponent.h"
-#include "TrashTheCache.h"
+
 
 void load()
 {
