@@ -15,7 +15,6 @@
 #include "InputManager.h"
 #include "RenderComponent.h"
 
-
 void load()
 {
 	auto& scene = dae::SceneManager::GetInstance().CreateScene("Demo");
