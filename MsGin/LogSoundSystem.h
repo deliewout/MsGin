@@ -17,6 +17,14 @@ namespace dae
 			m_RealSs->Play(id, volume);
 			std::cout << "playing " << id << " at volume " << volume << std::endl;
 		}
+		virtual void SetVolume(float volume)
+		{
+			m_RealSs->SetVolume(volume);
+		}
+		virtual void Stop()
+		{
+
+		}
 	
 	};
 }

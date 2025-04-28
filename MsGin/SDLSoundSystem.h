@@ -14,8 +14,8 @@ namespace dae
 		SDLSoundSystem& operator=(SDLSoundSystem&& other) = delete;
 
 		virtual void Play(const sound_id ìd, const float volume) override;
-		virtual void ChangeVolume(float volume);
-		virtual void Stop();
+		virtual void SetVolume(float volume) override;
+		virtual void Stop()override;
 
 	private:
 		float m_Volume{ 1.f };

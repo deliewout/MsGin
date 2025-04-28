@@ -26,7 +26,7 @@ namespace dae
 	public:
 		NullSoundSystem() = default;
 		virtual void Play(const sound_id, const float ) override {}
-		virtual void SetVolume(float volume) {}
+		virtual void SetVolume(float ) {}
 		virtual void Stop() {}
 	};
 }
