@@ -4,21 +4,29 @@
 #endif
 #endif
 
-#include "FPSComponent.h"
 #include "Minigin.h"
 #include "SceneManager.h"
+#include "Scene.h"
 #include "ResourceManager.h"
 #include "TextObject.h"
-#include "Scene.h"
 #include "GameObject.h"
 #include "HealthComponent.h"
 #include "InputManager.h"
+#include "FPSComponent.h"
 #include "RenderComponent.h"
+#include "ServiceLocator.h"
+#include "SDLSoundSystem.h"
+#include "LogSoundSystem.h"
 
 void load()
 {
 	auto& scene = dae::SceneManager::GetInstance().CreateScene("Demo");
 	auto& input = dae::InputManager::GetInstance();
+#if _DEBUG
+	dae::ServiceLocator::RegisterSoundSystem(std::make_unique<dae::LogSoundSystem>(std::make_unique<dae::SDLSoundSystem>()));
+#else
+	dae::ServiceLocator::RegisterSoundSystem(std::make_unique<dae::SDLSoundSystem>());
+#endif
 
 	const float movementSpeed{ 2.f };
 
