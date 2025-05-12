@@ -5,7 +5,7 @@
 
 namespace dae
 {
-	class gameObject;
+	class GameObject;
 	class Transform final : public Component
 	{
 	public:
@@ -25,9 +25,12 @@ namespace dae
 		const glm::vec2& GetWorldPosition();
 		void UpdateWorldPos();
 
-		void SetPosition(float x, float y);
+		//void SetPosition(float x, float y);
 		void SetLocalPos(const float x, const float y);
 		void SetLocalPos(const glm::vec2& pos);
+
+		void SetWorldScale(float x, float y);
+		void SetWorldScale(const glm::vec2& pos);
 
 		void MoveLocalPosition(const glm::vec2& Pos);
 

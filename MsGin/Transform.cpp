@@ -1,6 +1,7 @@
 #include "Transform.h"
 
 #include "GameObject.h"
+#include <iostream>
 
 const glm::vec2& dae::Transform::GetWorldPosition()
 {
@@ -21,11 +22,12 @@ void dae::Transform::UpdateWorldPos()
 	m_PosDirty = false;
 }
 
-void dae::Transform::SetPosition(const float x, const float y)
-{
-	m_position.x = x;
-	m_position.y = y;
-}
+//void dae::Transform::SetPosition(const float x, const float y)
+//{
+//	m_position.x = x;
+//	m_position.y = y;
+//	
+//}
 
 void dae::Transform::SetLocalPos(const float x, const float y)
 {
@@ -37,9 +39,16 @@ void dae::Transform::SetLocalPos(const glm::vec2& pos)
 	m_LocalPos = pos;
 	SetDirtyFlag();
 }
+void dae::Transform::SetWorldScale(float , float )
+{
+}
+void dae::Transform::SetWorldScale(const glm::vec2&)
+{
+}
 void dae::Transform::MoveLocalPosition(const glm::vec2& Pos)
 {
 	m_LocalPos += Pos;
+	std::cout << m_LocalPos.x << " " << m_LocalPos.y << std::endl;
 	SetDirtyFlag();
 }
 void dae::Transform::SetDirtyFlag()
