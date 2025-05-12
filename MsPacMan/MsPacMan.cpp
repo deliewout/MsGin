@@ -28,7 +28,7 @@ void load()
 	dae::ServiceLocator::RegisterSoundSystem(std::make_unique<dae::SDLSoundSystem>());
 #endif
 
-	const float movementSpeed{ 2.f };
+	const float movementSpeed{ 1.f };
 
 	auto backGround = std::make_shared<dae::GameObject>();
 	auto texture = dae::ResourceManager::GetInstance().LoadTexture("background.tga");
@@ -60,6 +60,13 @@ void load()
 	fps->AddComponent<dae::FPSComponent>();
 	scene.Add(fps);
 
+	auto level = std::make_shared<dae::GameObject>();
+	texture = dae::ResourceManager::GetInstance().LoadTexture("Level/FirstLevel.jpg");
+	newTexture = level->AddComponent<dae::RenderComponent>();
+	newTexture->Settexture(texture);
+	scene.Add(level);
+
+
 	auto MsPacMan = std::make_shared<dae::GameObject>();
 	texture = dae::ResourceManager::GetInstance().LoadTexture("Sprites/MsPacman.jpg");
 	newTexture = MsPacMan->AddComponent<dae::RenderComponent>();
@@ -68,10 +75,10 @@ void load()
 	MsPacMan->AddComponent<dae::HealthComponent>();
 	scene.Add(MsPacMan);
 
-	input.BindGamePadCommand(0, dae::GamepadButtons::Dpad_Left, dae::KeyStates::down, std::make_unique<PlayerMoveCommand>(MsPacMan, glm::vec2{ -1,0 }, movementSpeed));
-	input.BindGamePadCommand(0, dae::GamepadButtons::Dpad_Right, dae::KeyStates::down, std::make_unique<PlayerMoveCommand>(MsPacMan, glm::vec2{ 1,0 }, movementSpeed));
-	input.BindGamePadCommand(0, dae::GamepadButtons::Dpad_Down, dae::KeyStates::down, std::make_unique<PlayerMoveCommand>(MsPacMan, glm::vec2{ 0,-1 }, movementSpeed));
-	input.BindGamePadCommand(0, dae::GamepadButtons::Dpad_Up, dae::KeyStates::down, std::make_unique<PlayerMoveCommand>(MsPacMan, glm::vec2{ 0,1 }, movementSpeed));
+	input.BindGamePadCommand(0, dae::GamepadButtons::Dpad_Left, dae::KeyStates::pressed, std::make_unique<PlayerMoveCommand>(MsPacMan, glm::vec2{ -1,0 }, movementSpeed));
+	input.BindGamePadCommand(0, dae::GamepadButtons::Dpad_Right, dae::KeyStates::pressed, std::make_unique<PlayerMoveCommand>(MsPacMan, glm::vec2{ 1,0 }, movementSpeed));
+	input.BindGamePadCommand(0, dae::GamepadButtons::Dpad_Down, dae::KeyStates::pressed, std::make_unique<PlayerMoveCommand>(MsPacMan, glm::vec2{ 0,-1 }, movementSpeed));
+	input.BindGamePadCommand(0, dae::GamepadButtons::Dpad_Up, dae::KeyStates::pressed, std::make_unique<PlayerMoveCommand>(MsPacMan, glm::vec2{ 0,1 }, movementSpeed));
 
 	auto Pacman = std::make_shared<dae::GameObject>();
 	texture = dae::ResourceManager::GetInstance().LoadTexture("Sprites/Pacman.jpg");
@@ -80,10 +87,10 @@ void load()
 	Pacman->GetTransform()->SetLocalPos(100, 140);
 	scene.Add(Pacman);
 
-	input.BindKeyBoardCommand(SDL_SCANCODE_LEFT, dae::KeyStates::pressed, std::make_unique<PlayerMoveCommand>(MsPacMan, glm::vec2{ -1,0 }, 2 * movementSpeed));
-	input.BindKeyBoardCommand(SDL_SCANCODE_RIGHT, dae::KeyStates::pressed, std::make_unique<PlayerMoveCommand>(MsPacMan, glm::vec2{ 1,0 }, 2 * movementSpeed));
-	input.BindKeyBoardCommand(SDL_SCANCODE_DOWN, dae::KeyStates::pressed, std::make_unique<PlayerMoveCommand>(MsPacMan, glm::vec2{ 0,-1 }, 2 * movementSpeed));
-	input.BindKeyBoardCommand(SDL_SCANCODE_UP, dae::KeyStates::pressed, std::make_unique<PlayerMoveCommand>(MsPacMan, glm::vec2{ 0,1 }, 2 * movementSpeed));
+	input.BindKeyBoardCommand(SDL_SCANCODE_LEFT, dae::KeyStates::pressed, std::make_unique<PlayerMoveCommand>(Pacman, glm::vec2{ -1,0 }, 2 * movementSpeed));
+	input.BindKeyBoardCommand(SDL_SCANCODE_RIGHT, dae::KeyStates::pressed, std::make_unique<PlayerMoveCommand>(Pacman, glm::vec2{ 1,0 }, 2 * movementSpeed));
+	input.BindKeyBoardCommand(SDL_SCANCODE_DOWN, dae::KeyStates::pressed, std::make_unique<PlayerMoveCommand>(Pacman, glm::vec2{ 0,-1 }, 2 * movementSpeed));
+	input.BindKeyBoardCommand(SDL_SCANCODE_UP, dae::KeyStates::pressed, std::make_unique<PlayerMoveCommand>(Pacman, glm::vec2{ 0,1 }, 2 * movementSpeed));
 	//auto trashTheCacheObject = std::make_shared<dae::GameObject>();
 	//trashTheCacheObject->AddComponent<dae::TrashTheCache>();
 	//scene.Add(trashTheCacheObject);

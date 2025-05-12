@@ -1,6 +1,7 @@
 #pragma once
 #include <SDL_keyboard.h>
 #include <SDL_scancode.h>
+#include <iostream>
 #include <vector>
 
 namespace dae
@@ -19,9 +20,11 @@ namespace dae
 
 		void Update();
 
-		bool IsButtonDown(SDL_Scancode button)const { return m_Down[button]; }
-		bool IsButtonReleased(SDL_Scancode button)const { return m_Up[button]; }
-		bool IsButtonPressed(SDL_Scancode button)const { return m_Pressed[button]; }
+		bool IsButtonDown(SDL_Scancode button)const { 
+			//std::cout << "button down\n";
+			return m_Down[button]; }
+		bool IsButtonReleased(SDL_Scancode button)const { /*std::cout << "button released\n";*/ return m_Up[button]; }
+		bool IsButtonPressed(SDL_Scancode button)const { /*std::cout << "button pressed\n"*/; return m_Pressed[button]; }
 	private:
 		std::vector<Uint8> m_Down;
 		std::vector<Uint8> m_Up;
