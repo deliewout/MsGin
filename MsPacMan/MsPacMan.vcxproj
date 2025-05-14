@@ -160,10 +160,12 @@
     <ClCompile Include="FPSComponent.cpp" />
     <ClCompile Include="HealthComponent.cpp" />
     <ClCompile Include="MsPacMan.cpp" />
+    <ClCompile Include="PlayerMoveCommand.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FPSComponent.h" />
     <ClInclude Include="HealthComponent.h" />
+    <ClInclude Include="PlayerMoveCommand.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

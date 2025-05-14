@@ -15,6 +15,7 @@
 #include "FPSComponent.h"
 #include "RenderComponent.h"
 #include "ServiceLocator.h"
+#include "PlayerMoveCommand.h"
 #include "SDLSoundSystem.h"
 #include "LogSoundSystem.h"
 
