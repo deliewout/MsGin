@@ -8,7 +8,7 @@
 
 dae::InputManager::InputManager()
 {
-	m_Keyboard = std::make_unique<KeyBoard>();
+	m_Keyboard = std::make_unique<KeyBoardImpl>();
 	for (int i{0};i<4;++i)
 	{
 		m_Gamepads.push_back(std::make_unique<Gamepad>(i));

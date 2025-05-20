@@ -74,7 +74,7 @@ namespace dae
 		void BindGamePadCommand(const int& controllerIdx, const GamepadButtons& gamepadButtons, const KeyStates& keyState, std::unique_ptr<Command> command);
 		void BindKeyBoardCommand(const SDL_Scancode& button, const KeyStates& keyState, std::unique_ptr<Command> command);
 	private:
-		std::unique_ptr<KeyBoard> m_Keyboard;
+		std::unique_ptr<KeyBoardImpl> m_Keyboard;
 		std::vector<std::unique_ptr<Gamepad>> m_Gamepads;
 		std::vector<std::unique_ptr<GamepadCommand>> m_GamepadCommands;
 		std::vector<std::unique_ptr<KeyboardCommand>> m_KeyboardCommands;
