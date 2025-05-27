@@ -163,6 +163,7 @@
     <ClCompile Include="PlayerMoveCommand.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Events.h" />
     <ClInclude Include="FPSComponent.h" />
     <ClInclude Include="HealthComponent.h" />
     <ClInclude Include="PlayerMoveCommand.h" />

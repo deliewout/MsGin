@@ -29,7 +29,7 @@ void load()
 	dae::ServiceLocator::RegisterSoundSystem(std::make_unique<dae::SDLSoundSystem>());
 #endif
 
-	const float movementSpeed{ 1.f };
+	const float movementSpeed{ 2.f };
 
 	//auto backGround = std::make_shared<dae::GameObject>();
 	//auto texture = dae::ResourceManager::GetInstance().LoadTexture("background.tga");
@@ -89,10 +89,10 @@ void load()
 	Pacman->GetTransform()->SetLocalPos(100, 140);
 	scene.Add(Pacman);
 
-	input.BindKeyBoardCommand(SDL_SCANCODE_LEFT, dae::KeyStates::pressed, std::make_unique<PlayerMoveCommand>(Pacman, glm::vec2{ -1,0 }, 2 * movementSpeed));
-	input.BindKeyBoardCommand(SDL_SCANCODE_RIGHT, dae::KeyStates::pressed, std::make_unique<PlayerMoveCommand>(Pacman, glm::vec2{ 1,0 }, 2 * movementSpeed));
-	input.BindKeyBoardCommand(SDL_SCANCODE_DOWN, dae::KeyStates::pressed, std::make_unique<PlayerMoveCommand>(Pacman, glm::vec2{ 0,1 }, 2 * movementSpeed));
-	input.BindKeyBoardCommand(SDL_SCANCODE_UP, dae::KeyStates::pressed, std::make_unique<PlayerMoveCommand>(Pacman, glm::vec2{ 0,-1 }, 2 * movementSpeed));
+	input.BindKeyBoardCommand(SDL_SCANCODE_LEFT, dae::KeyStates::pressed, std::make_unique<PlayerMoveCommand>(Pacman, glm::vec2{ -1,0 },  movementSpeed));
+	input.BindKeyBoardCommand(SDL_SCANCODE_RIGHT, dae::KeyStates::pressed, std::make_unique<PlayerMoveCommand>(Pacman, glm::vec2{ 1,0 },  movementSpeed));
+	input.BindKeyBoardCommand(SDL_SCANCODE_DOWN, dae::KeyStates::pressed, std::make_unique<PlayerMoveCommand>(Pacman, glm::vec2{ 0,1 },  movementSpeed));
+	input.BindKeyBoardCommand(SDL_SCANCODE_UP, dae::KeyStates::pressed, std::make_unique<PlayerMoveCommand>(Pacman, glm::vec2{ 0,-1 },  movementSpeed));
 	//auto trashTheCacheObject = std::make_shared<dae::GameObject>();
 	//trashTheCacheObject->AddComponent<dae::TrashTheCache>();
 	//scene.Add(trashTheCacheObject);
