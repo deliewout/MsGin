@@ -26,8 +26,8 @@ namespace dae
 		GameObject& operator=(const GameObject& other) = delete;
 		GameObject& operator=(GameObject&& other) = delete;
 
-		template<typename T>
-		T* AddComponent();
+		template<typename T, typename... Args>
+		T* AddComponent(Args&&... args);
 		template<typename T>
 		void removeComponent();
 		template<typename T>
@@ -59,13 +59,13 @@ namespace dae
 
 	};
 
-	template<typename T>
-	T* GameObject::AddComponent()
+	template<typename T,typename... Args>
+	T* GameObject::AddComponent(Args&&... args)
 	{
 		//make sure the gameObject doesn't have a component like this in its components vector
 		if (HasComponent<T>() == false)
 		{
-			auto pComponent = std::make_unique<T>(this);
+			auto pComponent = std::make_unique<T>(this,std::forward<Args>(args)...);
 			T* pComponentPtr{ pComponent.get() };
 			if constexpr (std::is_same<T, Transform>())
 			{
