@@ -54,6 +54,27 @@ void dae::InputManager::BindKeyBoardCommand(const SDL_Scancode& button, const Ke
 	m_KeyboardCommands.push_back(std::make_unique<KeyboardCommand>(button, keyState, std::move(command)));
 }
 
+void dae::InputManager::RemoveGamePadCommand(const int& controllerIdx, const GamepadButtons& gamepadButtons, const KeyStates& keyState)
+{
+	auto it = std::remove_if(m_GamepadCommands.begin(), m_GamepadCommands.end(), [&](const std::unique_ptr<GamepadCommand>& cmd)
+		{
+			return cmd->ControllerIdx == controllerIdx &&
+				cmd->GamepadButton == gamepadButtons &&
+				cmd->KeyState == keyState;
+		});
+	m_GamepadCommands.erase(it, m_GamepadCommands.end());
+}
+
+void dae::InputManager::RemoveKeyBoardCommand(const SDL_Scancode& button, const KeyStates& keyState)
+{
+	auto it = std::remove_if(m_KeyboardCommands.begin(), m_KeyboardCommands.end(), [&](const std::unique_ptr<KeyboardCommand>& cmd)
+		{
+			return cmd->Button == button &&
+				cmd->KeyState == keyState;
+		});
+	m_KeyboardCommands.erase(it, m_KeyboardCommands.end());
+}
+
 void dae::InputManager::HandleCommands()
 {
 	for (auto& command:m_GamepadCommands)
