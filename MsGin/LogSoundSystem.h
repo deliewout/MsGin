@@ -21,9 +21,14 @@ namespace dae
 		{
 			m_RealSs->SetVolume(volume);
 		}
+		virtual int LoadMusic(const char* fileName) override
+		{
+			m_RealSs->LoadMusic(fileName);
+			return 0;
+		}
 		virtual void Stop()
 		{
-
+			m_RealSs->Stop();
 		}
 	
 	};

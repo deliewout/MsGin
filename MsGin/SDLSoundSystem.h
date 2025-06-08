@@ -18,11 +18,20 @@ namespace dae
 		virtual void SetVolume(float volume) override;
 		virtual void Stop()override;
 
+		virtual int LoadMusic(const char* fileName);
+
 	private:
 		float m_Volume{ 1.f };
-		std::mutex m_Mutex{};
 
 		std::map<sound_id, Mix_Music*> m_MusicMap;
+		std::map<sound_id, Mix_Chunk*> m_SoundsMap;
+
+		std::jthread m_Thread{};
+		std::mutex m_Mutex{};
+		std::condition_variable m_Cv{};
+		bool m_IsPlaying{ false };
+
+
 
 	};
 }

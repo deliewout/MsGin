@@ -74,7 +74,7 @@ void load()
 	newTexture = MsPacMan->AddComponent<dae::RenderComponent>();
 	newTexture->Settexture(texture);
 	MsPacMan->GetTransform()->SetLocalPos(80, 140);
-	MsPacMan->AddComponent<dae::HealthComponent>();
+	MsPacMan->AddComponent<HealthComponent>( 3);
 	scene.Add(MsPacMan);
 
 	input.BindGamePadCommand(0, dae::GamepadButtons::Dpad_Left, dae::KeyStates::pressed, std::make_unique<PlayerMoveCommand>(MsPacMan, glm::vec2{ -1,0 }, movementSpeed));
@@ -96,6 +96,9 @@ void load()
 	//auto trashTheCacheObject = std::make_shared<dae::GameObject>();
 	//trashTheCacheObject->AddComponent<dae::TrashTheCache>();
 	//scene.Add(trashTheCacheObject);
+
+	auto& soundSystem = dae::ServiceLocator::GetSoundSystem();
+	soundSystem.LoadMusic("Sounds/ms_start.wav");
 
 }
 
