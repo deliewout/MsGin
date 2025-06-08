@@ -22,13 +22,6 @@ void dae::Transform::UpdateWorldPos()
 	m_PosDirty = false;
 }
 
-//void dae::Transform::SetPosition(const float x, const float y)
-//{
-//	m_position.x = x;
-//	m_position.y = y;
-//	
-//}
-
 void dae::Transform::SetLocalPos(const float x, const float y)
 {
 	SetLocalPos({ x,y });
@@ -39,12 +32,50 @@ void dae::Transform::SetLocalPos(const glm::vec2& pos)
 	m_LocalPos = pos;
 	SetDirtyFlag();
 }
-void dae::Transform::SetWorldScale(float , float )
+
+void dae::Transform::SetWorldScale(const float x, const float y)
 {
+	SetWorldScale({ x,y });
 }
-void dae::Transform::SetWorldScale(const glm::vec2&)
+
+void dae::Transform::SetWorldScale(const glm::vec2& scale)
 {
+	auto parentScale = m_pParent ? m_pParent->GetTransform()->GetWorldScale() : glm::vec2{ 2.f, 2.f };
+	m_localScale = scale / parentScale;
+	SetDirtyFlag();
 }
+
+const glm::vec2& dae::Transform::GetWorldScale()
+{
+	if (m_PosDirty)
+		UpdateWorldScale();
+	return m_WorldScale;
+}
+
+void dae::Transform::SetLocalScale(float x, float y)
+{
+	SetLocalScale({ x,y });
+}
+
+void dae::Transform::SetLocalScale(const glm::vec2& scale)
+{
+	m_localScale = scale;
+	SetDirtyFlag();
+}
+
+void dae::Transform::UpdateWorldScale()
+{
+	if (m_PosDirty)
+	{
+	if (m_pParent == nullptr)
+		m_WorldScale = m_localScale;
+	else
+		m_WorldScale = m_localScale * m_pParent->GetTransform()->GetWorldScale();
+	m_PosDirty = false;
+	}
+	
+}
+
 void dae::Transform::MoveLocalPosition(const glm::vec2& Pos)
 {
 	m_LocalPos += Pos;

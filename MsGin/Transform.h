@@ -30,7 +30,14 @@ namespace dae
 		void SetLocalPos(const glm::vec2& pos);
 
 		void SetWorldScale(float x, float y);
-		void SetWorldScale(const glm::vec2& pos);
+		void SetWorldScale(const glm::vec2& scale);
+
+		const glm::vec2& GetLocalScale() const { return m_LocalPos; }
+		const glm::vec2& GetWorldScale();
+		void SetLocalScale(float x, float y);
+		void SetLocalScale(const glm::vec2& scale);
+
+		void UpdateWorldScale();
 
 		void MoveLocalPosition(const glm::vec2& Pos);
 
@@ -42,6 +49,9 @@ namespace dae
 		glm::vec2 m_position{};
 		glm::vec2 m_LocalPos{};
 		glm::vec2 m_WorldPos{};
+
+		glm::vec2 m_localScale{1.f};
+		glm::vec2 m_WorldScale{1.f};
 
 		bool m_PosDirty{false};
 		GameObject* m_pParent{};

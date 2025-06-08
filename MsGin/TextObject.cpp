@@ -39,12 +39,17 @@ void dae::TextObject::FixedUpdate(float)
 {
 }
 
-void dae::TextObject::Render(glm::vec2 pos) const
+void dae::TextObject::Render() const
 {
 	if (m_textTexture != nullptr)
 	{
 		//const auto& pos = m_transform->GetPosition();
-		Renderer::GetInstance().RenderTexture(*m_textTexture, pos.x, pos.y);
+		auto pos = GetOwner()->GetTransform()->GetWorldPosition();
+		auto scale = GetOwner()->GetTransform()->GetWorldScale();
+		int texW = 0, texH = 0;
+		SDL_QueryTexture(m_textTexture->GetSDLTexture(), nullptr, nullptr, &texW, &texH);
+
+		Renderer::GetInstance().RenderTexture(*m_textTexture, pos.x, pos.y, texW * scale.x, texH * scale.y);
 	}
 }
 

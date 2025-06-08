@@ -64,7 +64,8 @@ void load()
 	auto level = std::make_shared<dae::GameObject>();
 	auto texture = dae::ResourceManager::GetInstance().LoadTexture("Level/FirstLevel.jpg");
 	auto newTexture = level->AddComponent<dae::RenderComponent>();
-	level->GetTransform()->MoveLocalPosition({320,240});
+	level->GetTransform()->MoveLocalPosition({240,180});
+	level->GetTransform()->SetLocalScale(0.2f, 0.2f);
 	newTexture->Settexture(texture);
 	scene.Add(level);
 

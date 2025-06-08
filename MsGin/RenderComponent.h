@@ -17,7 +17,7 @@ namespace dae
 		RenderComponent(RenderComponent&& other) = delete;
 		RenderComponent& operator=(RenderComponent&& rhs) = delete;
 
-		void Render(glm::vec2 pos) const override;
+		void Render() const override;
 
 		void Settexture(std::shared_ptr<Texture2D> pTexture) { m_pTexture = pTexture; }
 

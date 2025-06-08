@@ -43,7 +43,7 @@ void dae::GameObject::Render() const
 {
 	for (const auto& component : m_pComponents)
 	{
-		component->Render(m_transform->GetLocalPosition());
+		component->Render();
 	}
 	//const auto& pos = m_transform->GetPosition();
 	//Renderer::GetInstance().RenderTexture(*m_texture, pos.x, pos.y);
