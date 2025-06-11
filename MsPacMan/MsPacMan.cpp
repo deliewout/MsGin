@@ -64,8 +64,8 @@ void load()
 	auto level = std::make_shared<dae::GameObject>();
 	auto texture = dae::ResourceManager::GetInstance().LoadTexture("Level/FirstLevel.jpg");
 	auto newTexture = level->AddComponent<dae::RenderComponent>();
-	level->GetTransform()->MoveLocalPosition({240,180});
-	level->GetTransform()->SetLocalScale(0.2f, 0.2f);
+	level->GetTransform()->MoveLocalPosition({180,120});
+	level->GetTransform()->SetWorldScale(1.5f, 1.5f);
 	newTexture->Settexture(texture);
 	scene.Add(level);
 
@@ -83,17 +83,18 @@ void load()
 	input.BindGamePadCommand(0, dae::GamepadButtons::Dpad_Down, dae::KeyStates::pressed, std::make_unique<PlayerMoveCommand>(MsPacMan, glm::vec2{ 0,1 }, movementSpeed));
 	input.BindGamePadCommand(0, dae::GamepadButtons::Dpad_Up, dae::KeyStates::pressed, std::make_unique<PlayerMoveCommand>(MsPacMan, glm::vec2{ 0,-1 }, movementSpeed));
 
-	auto Pacman = std::make_shared<dae::GameObject>();
-	texture = dae::ResourceManager::GetInstance().LoadTexture("Sprites/Pacman.jpg");
-	newTexture = Pacman->AddComponent<dae::RenderComponent>();
-	newTexture->Settexture(texture);
-	Pacman->GetTransform()->SetLocalPos(100, 140);
-	scene.Add(Pacman);
+	//auto Pacman = std::make_shared<dae::GameObject>();
+	//texture = dae::ResourceManager::GetInstance().LoadTexture("Sprites/Pacman.jpg");
+	//newTexture = Pacman->AddComponent<dae::RenderComponent>();
+	//newTexture->Settexture(texture);
+	//Pacman->GetTransform()->SetLocalPos(100, 140);
+	//scene.Add(Pacman);
 
-	input.BindKeyBoardCommand(SDL_SCANCODE_LEFT, dae::KeyStates::pressed, std::make_unique<PlayerMoveCommand>(Pacman, glm::vec2{ -1,0 },  movementSpeed));
-	input.BindKeyBoardCommand(SDL_SCANCODE_RIGHT, dae::KeyStates::pressed, std::make_unique<PlayerMoveCommand>(Pacman, glm::vec2{ 1,0 },  movementSpeed));
-	input.BindKeyBoardCommand(SDL_SCANCODE_DOWN, dae::KeyStates::pressed, std::make_unique<PlayerMoveCommand>(Pacman, glm::vec2{ 0,1 },  movementSpeed));
-	input.BindKeyBoardCommand(SDL_SCANCODE_UP, dae::KeyStates::pressed, std::make_unique<PlayerMoveCommand>(Pacman, glm::vec2{ 0,-1 },  movementSpeed));
+	//input.BindKeyBoardCommand(SDL_SCANCODE_LEFT, dae::KeyStates::pressed, std::make_unique<PlayerMoveCommand>(Pacman, glm::vec2{ -1,0 },  movementSpeed));
+	//input.BindKeyBoardCommand(SDL_SCANCODE_RIGHT, dae::KeyStates::pressed, std::make_unique<PlayerMoveCommand>(Pacman, glm::vec2{ 1,0 },  movementSpeed));
+	//input.BindKeyBoardCommand(SDL_SCANCODE_DOWN, dae::KeyStates::pressed, std::make_unique<PlayerMoveCommand>(Pacman, glm::vec2{ 0,1 },  movementSpeed));
+	//input.BindKeyBoardCommand(SDL_SCANCODE_UP, dae::KeyStates::pressed, std::make_unique<PlayerMoveCommand>(Pacman, glm::vec2{ 0,-1 },  movementSpeed));
+	
 	//auto trashTheCacheObject = std::make_shared<dae::GameObject>();
 	//trashTheCacheObject->AddComponent<dae::TrashTheCache>();
 	//scene.Add(trashTheCacheObject);

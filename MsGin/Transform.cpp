@@ -40,9 +40,11 @@ void dae::Transform::SetWorldScale(const float x, const float y)
 
 void dae::Transform::SetWorldScale(const glm::vec2& scale)
 {
-	auto parentScale = m_pParent ? m_pParent->GetTransform()->GetWorldScale() : glm::vec2{ 2.f, 2.f };
+	auto parentScale = m_pParent ? m_pParent->GetTransform()->GetWorldScale() : glm::vec2{ 1.f, 1.f };
 	m_localScale = scale / parentScale;
-	SetDirtyFlag();
+	SetScaleDirtyFlag();
+	auto Scale = GetOwner()->GetTransform()->GetWorldScale();
+	std::cout << "World scale: " << Scale.x << ", " << Scale.y << "\n";
 }
 
 const glm::vec2& dae::Transform::GetWorldScale()
@@ -60,18 +62,18 @@ void dae::Transform::SetLocalScale(float x, float y)
 void dae::Transform::SetLocalScale(const glm::vec2& scale)
 {
 	m_localScale = scale;
-	SetDirtyFlag();
+	SetScaleDirtyFlag();
 }
 
 void dae::Transform::UpdateWorldScale()
 {
-	if (m_PosDirty)
+	if (m_ScaleDirty)
 	{
 	if (m_pParent == nullptr)
 		m_WorldScale = m_localScale;
 	else
 		m_WorldScale = m_localScale * m_pParent->GetTransform()->GetWorldScale();
-	m_PosDirty = false;
+	m_ScaleDirty = false;
 	}
 	
 }
@@ -88,6 +90,15 @@ void dae::Transform::SetDirtyFlag()
 	for (auto& child:GetOwner()->GetChildren())
 	{
 		child->GetTransform()->SetDirtyFlag();
+	}
+}
+
+void dae::Transform::SetScaleDirtyFlag()
+{
+	m_ScaleDirty = true;
+	for (auto& child : GetOwner()->GetChildren())
+	{
+		child->GetTransform()->SetScaleDirtyFlag();
 	}
 }
 

@@ -42,6 +42,7 @@ namespace dae
 		void MoveLocalPosition(const glm::vec2& Pos);
 
 		void SetDirtyFlag();
+		void SetScaleDirtyFlag();
 
 		void SetParent(GameObject* pParent) { m_pParent = pParent; }
 		
@@ -54,6 +55,7 @@ namespace dae
 		glm::vec2 m_WorldScale{1.f};
 
 		bool m_PosDirty{false};
+		bool m_ScaleDirty{ false };
 		GameObject* m_pParent{};
 	};
 }
