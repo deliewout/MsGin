@@ -17,18 +17,34 @@ namespace dae
 			m_RealSs->Play(id, volume,loops);
 			std::cout << "playing " << id << " at volume " << volume << " looping "<< loops << " times" << std::endl;
 		}
-		virtual void SetVolume(float volume)
-		{
-			m_RealSs->SetVolume(volume);
-		}
-		virtual int LoadMusic(const char* fileName) override
+
+		virtual void LoadMusic(const char* fileName) override
 		{
 			m_RealSs->LoadMusic(fileName);
-			return 0;
+			std::cout << "loaded sound from file " << fileName << std::endl;
 		}
-		virtual void Stop()
+
+		virtual void ProcessQueue() override
+		{
+			m_RealSs->ProcessQueue();
+			std::cout << "processing the queue\n";
+		}
+
+		virtual void Mute() override
+		{
+			m_RealSs->Mute();
+			std::cout << "sound is muted\n";
+		}
+		virtual void SetVolume(float volume) override
+		{
+			m_RealSs->SetVolume(volume);
+			std::cout << "Volume has been set to " << volume << std::endl;
+		}
+
+		virtual void Stop() override
 		{
 			m_RealSs->Stop();
+			std::cout << "The sound has stopped playing\n";
 		}
 	
 	};

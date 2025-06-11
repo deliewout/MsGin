@@ -14,7 +14,9 @@ namespace dae
 		SoundSystem& operator=(SoundSystem&& other) = delete;
 
 		virtual void Play(const sound_id ìd, const float volume, const int loops)=0;
-		virtual int LoadMusic(const char* fileName) = 0;
+		virtual void LoadMusic(const char* fileName) = 0;
+		virtual void ProcessQueue()=0;
+		virtual void Mute() = 0;
 		virtual void SetVolume(float volume) = 0;
 		virtual void Stop() = 0;
 
@@ -27,9 +29,11 @@ namespace dae
 	public:
 		NullSoundSystem() = default;
 		virtual void Play(const sound_id, const float, const int ) override {}
-		virtual int LoadMusic(const char*) { return 0; }
-		virtual void SetVolume(float ) {}
-		virtual void Stop() {}
+		virtual void LoadMusic(const char*) override {  }
+		virtual void ProcessQueue() override {}
+		virtual void Mute() override {}
+		virtual void SetVolume(float ) override{}
+		virtual void Stop() override{}
 	};
 }
 
