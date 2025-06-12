@@ -161,6 +161,7 @@
     <ClCompile Include="FPSComponent.cpp" />
     <ClCompile Include="HealthComponent.cpp" />
     <ClCompile Include="MsPacMan.cpp" />
+    <ClCompile Include="MuteCommand.cpp" />
     <ClCompile Include="PlayerMoveCommand.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -169,6 +170,7 @@
     <ClInclude Include="FPSComponent.h" />
     <ClInclude Include="HealthComponent.h" />
     <ClInclude Include="BaseState.h" />
+    <ClInclude Include="MuteCommand.h" />
     <ClInclude Include="PlayerMoveCommand.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

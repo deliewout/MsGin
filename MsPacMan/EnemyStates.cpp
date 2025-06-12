@@ -42,7 +42,7 @@ WanderState::WanderState(dae::GameObject* pOwner)
 }
 std::unique_ptr<BaseState> WanderState::Update(float )
 {
-
+	return nullptr;
 }
 void WanderState::OnEnter()
 {
@@ -56,7 +56,7 @@ ChasingState::ChasingState(dae::GameObject* )
 }
 std::unique_ptr<BaseState> ChasingState::Update(float )
 {
-
+	return nullptr;
 }
 void ChasingState::OnEnter()
 {
@@ -70,7 +70,7 @@ RespawnState::RespawnState(dae::GameObject* )
 }
 std::unique_ptr<BaseState> RespawnState::Update(float )
 {
-
+	return nullptr;
 }
 void RespawnState::OnEnter()
 {
@@ -84,7 +84,7 @@ DeadState::DeadState(dae::GameObject*)
 }
 std::unique_ptr<BaseState> DeadState::Update(float)
 {
-
+	return nullptr;
 }
 void DeadState::OnEnter()
 {
