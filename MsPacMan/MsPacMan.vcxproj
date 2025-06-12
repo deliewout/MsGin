@@ -157,15 +157,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="EnemyStates.cpp" />
     <ClCompile Include="FPSComponent.cpp" />
     <ClCompile Include="HealthComponent.cpp" />
     <ClCompile Include="MsPacMan.cpp" />
     <ClCompile Include="PlayerMoveCommand.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="EnemyStates.h" />
     <ClInclude Include="Events.h" />
     <ClInclude Include="FPSComponent.h" />
     <ClInclude Include="HealthComponent.h" />
+    <ClInclude Include="BaseState.h" />
     <ClInclude Include="PlayerMoveCommand.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
