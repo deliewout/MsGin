@@ -44,7 +44,7 @@ void dae::Transform::SetWorldScale(const glm::vec2& scale)
 	m_localScale = scale / parentScale;
 	SetScaleDirtyFlag();
 	auto Scale = GetOwner()->GetTransform()->GetWorldScale();
-	std::cout << "World scale: " << Scale.x << ", " << Scale.y << "\n";
+	//std::cout << "World scale: " << Scale.x << ", " << Scale.y << "\n";
 }
 
 const glm::vec2& dae::Transform::GetWorldScale()
@@ -81,7 +81,7 @@ void dae::Transform::UpdateWorldScale()
 void dae::Transform::MoveLocalPosition(const glm::vec2& Pos)
 {
 	m_LocalPos += Pos;
-	std::cout << m_LocalPos.x << " " << m_LocalPos.y << std::endl;
+	//std::cout << m_LocalPos.x << " " << m_LocalPos.y << std::endl;
 	SetDirtyFlag();
 }
 void dae::Transform::SetDirtyFlag()
