@@ -1,11 +1,21 @@
 #pragma once
 
+#include <Event.h>
 namespace dae
 {
-	enum class Events
+	struct  PlayerDieEvent : public Event
 	{
-		PlayerDies,
-		PointsIncrease,
-
+		PlayerDieEvent() = default;
 	};
+
+	struct DotCollected : public Event
+	{
+		DotCollected() = default;
+	};
+
+	struct MegaDotCollected : public Event
+	{
+		MegaDotCollected() = default;
+	};
+
 }
