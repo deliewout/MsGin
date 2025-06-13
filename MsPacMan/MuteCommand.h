@@ -2,6 +2,7 @@
 #include <Command.h>
 class MuteCommand : public Command
 {
+public:
 	MuteCommand()=default;
 	~MuteCommand() = default;
 	MuteCommand(const MuteCommand& other) = delete;

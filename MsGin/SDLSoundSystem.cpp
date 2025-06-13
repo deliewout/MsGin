@@ -74,7 +74,7 @@ void dae::SDLSoundSystem::Stop()
 void dae::SDLSoundSystem::LoadMusic(const char* fileName)
 {
 	
-	Mix_Chunk* music = Mix_LoadWAV(fileName);
+	Mix_Music* music = Mix_LoadMUS(fileName);
 	if (!music)
 	{
 		std::cout << "Failed to load music: " << Mix_GetError() << std::endl;
@@ -82,7 +82,7 @@ void dae::SDLSoundSystem::LoadMusic(const char* fileName)
 	}
 	m_NextMusicId++;
 	sound_id id = static_cast<sound_id>(m_NextMusicId);
-	m_SoundsMap[id] = music;
+	m_MusicMap[id] = music;
 }
 
 void dae::SDLSoundSystem::ProcessQueue()
@@ -98,12 +98,19 @@ void dae::SDLSoundSystem::ProcessQueue()
 			m_SoundQueue.pop();
 			lock.unlock();
 
-			auto it = m_SoundsMap.find(id);
-			if (it != m_SoundsMap.end())
+			auto musicIt = m_MusicMap.find(id);
+			if (musicIt != m_MusicMap.end())
 			{
-				Mix_PlayChannel(-1, it->second, loops);
+				Mix_PlayMusic( musicIt->second, loops);
 			}
-
+			else
+			{
+				auto soundIt = m_SoundsMap.find(id);
+				if (soundIt != m_SoundsMap.end())
+				{
+					Mix_PlayChannel(-1, soundIt->second, loops);
+				}
+			}
 			lock.lock();
 		}
 

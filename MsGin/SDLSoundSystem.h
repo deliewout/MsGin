@@ -26,7 +26,7 @@ namespace dae
 		virtual void ProcessQueue() override;
 
 	private:
-		float m_Volume{ 1.f };
+		float m_Volume{ 5.f };
 		bool m_Ismute{ false };
 
 		int m_NextMusicId{0};
