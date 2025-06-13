@@ -160,6 +160,7 @@
     <ClCompile Include="EnemyStates.cpp" />
     <ClCompile Include="FPSComponent.cpp" />
     <ClCompile Include="HealthComponent.cpp" />
+    <ClCompile Include="LevelSelector.cpp" />
     <ClCompile Include="MsPacMan.cpp" />
     <ClCompile Include="MuteCommand.cpp" />
     <ClCompile Include="PlayerMoveCommand.cpp" />
@@ -170,6 +171,8 @@
     <ClInclude Include="FPSComponent.h" />
     <ClInclude Include="HealthComponent.h" />
     <ClInclude Include="BaseState.h" />
+    <ClInclude Include="LevelCommands.h" />
+    <ClInclude Include="LevelSelector.h" />
     <ClInclude Include="MuteCommand.h" />
     <ClInclude Include="PlayerMoveCommand.h" />
   </ItemGroup>
