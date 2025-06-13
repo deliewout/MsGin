@@ -2,6 +2,7 @@
 #include <SDL_mixer.h>
 #include <SDL.h>
 #include <iostream>
+#include <sstream>
 
 dae::SDLSoundSystem::SDLSoundSystem()
 {
@@ -73,8 +74,9 @@ void dae::SDLSoundSystem::Stop()
 
 void dae::SDLSoundSystem::LoadMusic(const char* fileName)
 {
-	
-	Mix_Music* music = Mix_LoadMUS(fileName);
+	std::stringstream file{};
+	file << "../Data/" << fileName;
+	Mix_Music* music = Mix_LoadMUS(file.str().c_str());
 	if (!music)
 	{
 		std::cout << "Failed to load music: " << Mix_GetError() << std::endl;
